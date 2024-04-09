@@ -116,13 +116,15 @@ const Page = () => {
       <footer className='row'>
         <div className='col presta'>
           <h3>Notre dernière prestation</h3>
-          <EventCard
-            imageSrc={last?.cover}
-            title={last?.title}
-            date={new Date(last?.date)}
-            label={last?.type}
-            small
-          />
+          {last && (
+            <EventCard
+              imageSrc={last?.cover}
+              title={last?.title}
+              date={new Date(last?.date)}
+              label={last?.type}
+              small
+            />
+          )}
         </div>
         <div className='col contact'>
           <h3>Contactez-nous</h3>
