@@ -40,7 +40,7 @@ const Logo = ({ size }) => (
         style={{
           fontFamily: 'Kalimati',
           fontSize: '39px',
-          // fontWeight: 700,
+          fontWeight: 700,
           whiteSpace: 'pre',
         }}
         x='-1.125'

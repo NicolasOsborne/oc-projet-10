@@ -36,7 +36,7 @@ const EventList = () => {
   const typeList = new Set(data?.events.map((event) => event.type))
   return (
     <>
-      {error && <div>An error occured</div>}
+      {error && <div data-testid='error-message'>An error occured</div>}
       {data === null ? (
         'loading'
       ) : (

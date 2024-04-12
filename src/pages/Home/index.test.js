@@ -1,4 +1,14 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+/**
+ * @jest-environment jsdom
+ */
+
+import {
+  fireEvent,
+  getAllByTestId,
+  getByTestId,
+  render,
+  screen,
+} from '@testing-library/react'
 import Home from './index'
 
 describe('When Form is created', () => {
@@ -27,16 +37,41 @@ describe('When Form is created', () => {
 })
 
 describe('When a page is created', () => {
-  it('a list of events is displayed', () => {
+  it('a list of events is displayed', async () => {
     // to implement
+    render(<Home />)
+    expect(getByTestId(document.body, 'events-list-testid')).toBeInTheDocument()
   })
-  it('a list a people is displayed', () => {
+
+  it('a list a people is displayed', async () => {
     // to implement
+    render(<Home />)
+    expect(getByTestId(document.body, 'people-list-testid')).toBeInTheDocument()
+    await screen.findByText('Samira')
+    await screen.findByText('Jean-baptiste')
+    await screen.findByText('Alice')
+    await screen.findByText('Luís')
+    await screen.findByText('Christine')
+    await screen.findByText('Isabelle')
+
+    // ou alors :
+    const peopleCards = screen.getAllByTestId('people-card-testid')
+    expect(peopleCards.length).toBeGreaterThan(0)
   })
-  it('a footer is displayed', () => {
+
+  it('a footer is displayed', async () => {
     // to implement
+    render(<Home />)
+    expect(getByTestId(document.body, 'footer-testid')).toBeInTheDocument()
+    await screen.findByText('Notre dernière prestation')
+    await screen.findByText('Contactez-nous')
   })
-  it('an event card, with the last event, is displayed', () => {
+
+  it('an event card, with the last event, is displayed', async () => {
     // to implement
+    render(<Home />)
+    expect(
+      getByTestId(document.body, 'last-event-card-testid')
+    ).toBeInTheDocument()
   })
 })

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, act } from '@testing-library/react'
 import { api, DataProvider } from '../../contexts/DataContext'
 import Events from './index'
 
@@ -7,7 +7,7 @@ const data = {
     {
       id: 1,
       type: 'soirée entreprise',
-      date: '2022-04-29T20:28:45.744Z',
+      date: '2022-02-29T20:28:45.744Z',
       title: 'Conférence #productCON',
       cover: '/images/stem-list-EVgsAbL51Rk-unsplash.png',
       description:
@@ -47,19 +47,26 @@ describe('When Events is created', () => {
     )
     await screen.findByText('avril')
   })
+
   describe('and an error occured', () => {
     it('an error message is displayed', async () => {
-      api.loadData = jest.fn().mockRejectedValue()
-      render(
-        <DataProvider>
-          <Events />
-        </DataProvider>
-      )
-      expect(await screen.findByText('An error occured')).toBeInTheDocument()
+      api.loadData = jest
+        .fn()
+        .mockRejectedValue(new Error('Failed to load data'))
+      await act(async () => {
+        render(
+          <DataProvider>
+            <Events />
+          </DataProvider>
+        )
+      })
+      const errorMessage = await screen.findByTestId('error-message')
+      expect(errorMessage).toBeInTheDocument()
     })
   })
+
   describe('and we select a category', () => {
-    it.only('a filtered list is displayed', async () => {
+    it('a filtered list is displayed', async () => {
       api.loadData = jest.fn().mockReturnValue(data)
       render(
         <DataProvider>
