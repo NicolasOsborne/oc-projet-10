@@ -25,5 +25,21 @@ describe('When Events is created', () => {
       await screen.findByText('Envoyer')
       expect(onSuccess).toHaveBeenCalled()
     })
+
+    it('the error action is called', async () => {
+      const onError = jest.fn()
+      const onSuccess = jest.fn()
+      render(<Form onError={onError} />)
+      fireEvent(
+        await screen.findByTestId('button-test-id'),
+        new MouseEvent('click', {
+          cancelable: true,
+          bubbles: true,
+        })
+      )
+      await screen.findByText('En cours')
+      await screen.findByText('Envoyer')
+      expect(onSuccess).not.toHaveBeenCalled()
+    })
   })
 })
