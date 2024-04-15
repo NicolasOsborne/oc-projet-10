@@ -70,31 +70,37 @@ const Page = () => {
               imageSrc='/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png'
               name='Samira'
               position='CEO'
+              imageAlt='Samira'
             />
             <PeopleCard
               imageSrc='/images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.png'
               name='Jean-baptiste'
               position='Directeur marketing'
+              imageAlt='Jean-Baptiste'
             />
             <PeopleCard
               imageSrc='/images/christina-wocintechchat-com-SJvDxw0azqw-unsplash.png'
               name='Alice'
               position='CXO'
+              imageAlt='Alice'
             />
             <PeopleCard
               imageSrc='/images/jonas-kakaroto-KIPqvvTOC1s-unsplash.png'
               name='Luís'
               position='Animateur'
+              imageAlt='Luís'
             />
             <PeopleCard
               imageSrc='/images/amy-hirschi-b3AYk8HKCl0-unsplash1.png'
               name='Christine'
               position='VP animation'
+              imageAlt='Christine'
             />
             <PeopleCard
               imageSrc='/images/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.png'
               name='Isabelle'
               position='VP communication'
+              imageAlt='Isabelle'
             />
           </div>
         </section>
@@ -118,7 +124,7 @@ const Page = () => {
         </div>
       </main>
       <footer className='row' data-testid='footer-testid'>
-        <div className='col presta' data-testid='last-event-card-testid'>
+        <div className='col presta' data-testid='footer-prestation-testid'>
           <h3>Notre dernière prestation</h3>
           {last && (
             <EventCard
@@ -127,30 +133,34 @@ const Page = () => {
               date={new Date(last.date)}
               label={last.type}
               small
+              data-testid='last-event-testid'
             />
           )}
         </div>
-        <div className='col contact'>
+        <div className='col contact' data-testid='footer-contact-testid'>
           <h3>Contactez-nous</h3>
           <address>45 avenue de la République, 75000 Paris</address>
           <div>01 23 45 67 89</div>
           <div>contact@724events.com</div>
           <div>
-            <a href='#twitch'>
+            <a href='#twitch' data-testid='footer-social-icon-testid'>
               <Icon name='twitch' />
             </a>
-            <a href='#facebook'>
+            <a href='#facebook' data-testid='footer-social-icon-testid'>
               <Icon name='facebook' />
             </a>
-            <a href='#twitter'>
+            <a href='#twitter' data-testid='footer-social-icon-testid'>
               <Icon name='twitter' />
             </a>
-            <a href='#youtube'>
+            <a href='#youtube' data-testid='footer-social-icon-testid'>
               <Icon name='youtube' />
             </a>
           </div>
         </div>
-        <div className='col description'>
+        <div
+          className='col description'
+          data-testid='footer-description-testid'
+        >
           <Logo size='large' />
           <p>
             Une agence événementielle propose des prestations de service
