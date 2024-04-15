@@ -14,6 +14,7 @@ import { useData } from '../../contexts/DataContext'
 
 const Page = () => {
   const { data } = useData()
+  // Définir "last" pour récupérer les données de l'événement le plus récent (le dernier). Si le tableau est vide, la valeur de last est "null". Ceci corrige le bug d'affichage de la card dans le Footer.
   const last = data ? data.events[data.events.length - 1] : null
 
   return (
@@ -127,6 +128,7 @@ const Page = () => {
         <div className='col presta' data-testid='footer-prestation-testid'>
           <h3>Notre dernière prestation</h3>
           {last && (
+            // Vérifier si "last" est bien défini (si il n'est pas "null") avant de rendre le composant EventCard. Ceci corrige les erreurs dans la console lorsque la page est rendue alors que les valeurs de data ne sont pas encore récupérées, et par conséquent "undefined".
             <EventCard
               imageSrc={last.cover}
               title={last.title}

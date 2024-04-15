@@ -53,6 +53,7 @@ describe('When Events is created', () => {
       api.loadData = jest
         .fn()
         .mockRejectedValue(new Error('Failed to load data'))
+      // Ajout de await act() pour attendre le rendu, en prenant en compte l'erreur.
       await act(async () => {
         render(
           <DataProvider>
@@ -66,6 +67,7 @@ describe('When Events is created', () => {
   })
 
   describe('and we select a category', () => {
+    // Suppression de it.only qui forçait les autres tests à être ignorés au profit de seulement celui-ci.
     it('a filtered list is displayed', async () => {
       api.loadData = jest.fn().mockReturnValue(data)
       render(

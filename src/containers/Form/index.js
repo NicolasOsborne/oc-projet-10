@@ -6,6 +6,7 @@ import Button, { BUTTON_TYPES } from '../../components/Button'
 
 const mockContactApi = () =>
   new Promise((resolve) => {
+    // Changement de la durée du Timeout (passer de 1000 à 900ms) pour que la simulation de call à l'API se termine bien une fois que le message ait fini de s'afficher. Ceci corrige de potentielles erreurs de timing dans les tests.
     setTimeout(resolve, 900)
   })
 
@@ -20,6 +21,7 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi()
         setSending(false)
+        // Ajout de l'appel à onSuccess qui avait été oublié. Ceci corrige le bug d'affichage de la modale de succès de l'envoi du formulaire.
         onSuccess()
       } catch (err) {
         setSending(false)

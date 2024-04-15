@@ -38,6 +38,7 @@ const Logo = ({ size }) => (
       <text
         fill='url(#paint5_linear_56_57)'
         style={{
+          // Correction de la syntaxe en camelCase pour que les propriétés de style soient bien prises en compte à l'affichage du composant. Ceci corrige des erreurs dans la console.
           fontFamily: 'Kalimati',
           fontSize: '39px',
           fontWeight: 700,

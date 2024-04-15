@@ -13,19 +13,21 @@ const EventList = () => {
   const { data, error } = useData()
   const [type, setType] = useState()
   const [currentPage, setCurrentPage] = useState(1)
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events.filter((event) => event.type === type)) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true
-    }
-    return false
-  })
+  const filteredEvents =
+    // Modification de la condition pour le filtre des événements : Si "type" n'est pas défini alors tous les événements sont récupérés (data.events). Si "type" est défini alors les événements pour lesquels event.type === type sont récupérés. Ceci corrige le bug de filtrage des événement.
+    (
+      (!type
+        ? data?.events
+        : data?.events.filter((event) => event.type === type)) || []
+    ).filter((event, index) => {
+      if (
+        (currentPage - 1) * PER_PAGE <= index &&
+        PER_PAGE * currentPage > index
+      ) {
+        return true
+      }
+      return false
+    })
 
   const changeType = (evtType) => {
     setCurrentPage(1)
