@@ -13,9 +13,7 @@ import Modal from '../../containers/Modal'
 import { useData } from '../../contexts/DataContext'
 
 const Page = () => {
-  const { data } = useData()
-  // Définir "last" pour récupérer les données de l'événement le plus récent (le dernier). Si le tableau est vide, la valeur de last est "null". Ceci corrige le bug d'affichage de la card dans le Footer.
-  const last = data ? data.events[data.events.length - 1] : null
+  const { last } = useData()
 
   return (
     <>
